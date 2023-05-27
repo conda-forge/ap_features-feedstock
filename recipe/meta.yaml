@@ -1,5 +1,5 @@
 {% set name = "ap_features" %}
-{% set version = "2023.1.0" %}
+{% set version = "2023.2.0" %}
 
 package:
   name: "{{ name|lower }}"
@@ -7,24 +7,24 @@ package:
 
 source:
   url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
-  sha256: ce0dbb2093164dd45a86d86fceae8958edc4b80f23485e03cdabd26c2e08b102
+  sha256: 8df8cac2abd37b01672aab50b12d4524561ff66ff990a56063a61b96fa896ee6
 
 build:
-  number: 1
+  number: 0
+  noarch: python
   script: "{{ PYTHON }} -m pip install . -vv --no-deps"
 
 requirements:
-  build:
-    - {{ compiler('c') }}
   host:
     - pip
-    - python
+    - python >=3.7
   run:
-    - python
+    - python >=3.7
     - matplotlib-base
     - numpy
     - scipy
     - tqdm
+    - numba
 
 test:
   imports:
